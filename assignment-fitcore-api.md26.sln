@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36623.8 d17.14
+VisualStudioVersion = 17.14.36623.8
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "assignment-fitcore-api.md26", "assignment-fitcore-api.md26\assignment-fitcore-api.md26.csproj", "{9F404FE4-0FD0-47EB-BB8A-7B364CB4FA36}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitCore.API", "assignment-fitcore-api.md26\FitCore.API.csproj", "{9F404FE4-0FD0-47EB-BB8A-7B364CB4FA36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitCore.Domain", "FitCore.Domain\FitCore.Domain.csproj", "{915B6A3D-0CE1-94B2-D659-48D839B8E21E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitCore.Application", "FitCore.Application\FitCore.Application.csproj", "{E38AB5AE-6967-3DDF-5B28-B307CAAE8CF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitCore.Infrastructure", "FitCore.Infrastructure\FitCore.Infrastructure.csproj", "{5D900D72-6382-5617-4E02-E0995095B3B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{9F404FE4-0FD0-47EB-BB8A-7B364CB4FA36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F404FE4-0FD0-47EB-BB8A-7B364CB4FA36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F404FE4-0FD0-47EB-BB8A-7B364CB4FA36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{915B6A3D-0CE1-94B2-D659-48D839B8E21E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{915B6A3D-0CE1-94B2-D659-48D839B8E21E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{915B6A3D-0CE1-94B2-D659-48D839B8E21E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{915B6A3D-0CE1-94B2-D659-48D839B8E21E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E38AB5AE-6967-3DDF-5B28-B307CAAE8CF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E38AB5AE-6967-3DDF-5B28-B307CAAE8CF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E38AB5AE-6967-3DDF-5B28-B307CAAE8CF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E38AB5AE-6967-3DDF-5B28-B307CAAE8CF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D900D72-6382-5617-4E02-E0995095B3B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D900D72-6382-5617-4E02-E0995095B3B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D900D72-6382-5617-4E02-E0995095B3B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D900D72-6382-5617-4E02-E0995095B3B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

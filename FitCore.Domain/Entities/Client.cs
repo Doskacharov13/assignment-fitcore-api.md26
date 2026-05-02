@@ -1,0 +1,16 @@
+﻿using FitCore.Domain.Common;
+
+namespace FitCore.Domain.Entities;
+
+/// <summary>
+/// Represents a gym client.
+/// </summary>
+public class Client : BaseEntity
+{
+    public string FullName { get; set; }
+    public string Email { get; set; }
+    public string Phone { get; set; }
+    public bool IsActive { get; set; } = true;
+
+    public ICollection<Membership> Memberships { get; set; } = new List<Membership>();
+}
