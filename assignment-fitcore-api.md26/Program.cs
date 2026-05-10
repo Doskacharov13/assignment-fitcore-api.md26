@@ -1,8 +1,16 @@
+using FitCore.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace assignment_fitcore_api.md26
 {
+    /// <summary>
+    /// Entry point of the FitCore API application.
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Main method configuring the application.
+        /// </summary>
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +18,12 @@ namespace assignment_fitcore_api.md26
             // Add services to the container.
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+            // Register DbContext
+            builder.Services.AddDbContext<FitCoreDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            // Swagger
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -26,7 +39,6 @@ namespace assignment_fitcore_api.md26
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

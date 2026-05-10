@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FitCore.Application\FitCore.Application.csproj" />
+    <ProjectReference Include="..\FitCore.Infrastructure\FitCore.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
