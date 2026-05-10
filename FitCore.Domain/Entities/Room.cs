@@ -3,13 +3,13 @@
 namespace FitCore.Domain.Entities;
 
 /// <summary>
-/// Represents a trainer.
+/// Represents a workout room.
 /// </summary>
-public class Trainer : BaseEntity
+public class Room : BaseEntity
 {
-    public string FullName { get; set; }
+    public string Name { get; set; }
 
-    public string Specialty { get; set; }
+    public int Capacity { get; set; }
 
     public bool IsActive { get; set; } = true;
 
