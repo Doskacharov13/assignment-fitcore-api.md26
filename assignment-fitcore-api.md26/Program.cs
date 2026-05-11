@@ -1,3 +1,5 @@
+using FitCore.Application.Interfaces;
+using FitCore.Application.Services;
 using FitCore.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,24 +17,29 @@ namespace assignment_fitcore_api.md26
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
+            // Add controllers
             builder.Services.AddControllers();
 
             // Register DbContext
             builder.Services.AddDbContext<FitCoreDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(
+                    builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            // Register services
+            builder.Services.AddScoped<IClientService, ClientService>();
 
             // Swagger
             builder.Services.AddEndpointsApiExplorer();
+
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            // Configure HTTP pipeline
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
+
                 app.UseSwaggerUI();
             }
 

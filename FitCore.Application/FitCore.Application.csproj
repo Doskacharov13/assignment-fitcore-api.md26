@@ -1,7 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\FitCore.Domain\FitCore.Domain.csproj" />
+    <ProjectReference Include="..\FitCore.Infrastructure\FitCore.Infrastructure.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
