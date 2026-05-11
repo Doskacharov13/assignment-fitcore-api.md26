@@ -33,6 +33,10 @@ namespace assignment_fitcore_api.md26
 
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddScoped<IMembershipPlanService, MembershipPlanService>();
+
+            builder.Services.AddScoped<IMembershipService, MembershipService>();
+
             var app = builder.Build();
 
             // Configure HTTP pipeline
