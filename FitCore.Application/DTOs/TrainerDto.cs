@@ -1,9 +1,9 @@
-﻿namespace FitCore.Domain.Entities;
+﻿namespace FitCore.Application.DTOs;
 
 /// <summary>
-/// Represents a gym trainer.
+/// Trainer response DTO.
 /// </summary>
-public class Trainer
+public class TrainerDto
 {
     public Guid Id { get; set; }
 
@@ -11,5 +11,5 @@ public class Trainer
 
     public string Specialty { get; set; }
 
-    public bool IsActive { get; set; } = true;
+    public bool IsActive { get; set; }
 }
