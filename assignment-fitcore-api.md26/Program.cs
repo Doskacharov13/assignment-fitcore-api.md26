@@ -39,6 +39,12 @@ namespace assignment_fitcore_api.md26
 
             builder.Services.AddScoped<ITrainerService, TrainerService>();
 
+            builder.Services.AddScoped<IRoomService, RoomService>();
+
+            builder.Services.AddScoped<IWorkoutClassService, WorkoutClassService>();
+
+            builder.Services.AddScoped<IReservationService, ReservationService>();
+
             var app = builder.Build();
 
             // Configure HTTP pipeline
