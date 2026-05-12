@@ -3,15 +3,13 @@
 namespace FitCore.Domain.Entities;
 
 /// <summary>
-/// Represents workout class.
+/// Represents a workout class.
 /// </summary>
 public class WorkoutClass : BaseEntity
 {
-    public string Name { get; set; }
+    public string Title { get; set; }
 
     public DateTime StartTime { get; set; }
-
-    public int DurationMinutes { get; set; }
 
     public int Capacity { get; set; }
 

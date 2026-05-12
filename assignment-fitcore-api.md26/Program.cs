@@ -1,7 +1,11 @@
+using FitCore.API.GraphQL;
+using FitCore.API.Hubs;
+using FitCore.API.Middleware;
 using FitCore.Application.Interfaces;
 using FitCore.Application.Services;
 using FitCore.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using FitCore.API.Hubs;
 
 namespace assignment_fitcore_api.md26
 {
@@ -49,6 +53,13 @@ namespace assignment_fitcore_api.md26
 
             builder.Services.AddScoped<IVisitService, VisitService>();
 
+            builder.Services.AddSignalR();
+
+
+            builder.Services
+    .AddGraphQLServer()
+    .AddQueryType<Query>()
+    .AddMutationType<Mutation>();
             var app = builder.Build();
 
             // Configure HTTP pipeline
@@ -59,11 +70,17 @@ namespace assignment_fitcore_api.md26
                 app.UseSwaggerUI();
             }
 
+            app.UseMiddleware<ExceptionMiddleware>();
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
             app.MapControllers();
+
+            app.MapGraphQL();
+
+            app.MapHub<NotificationHub>("/notificationHub");
 
             app.Run();
         }

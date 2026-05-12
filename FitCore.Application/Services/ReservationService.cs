@@ -4,6 +4,7 @@ using FitCore.Domain.Entities;
 using FitCore.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace FitCore.Application.Services;
 
 /// <summary>
@@ -12,6 +13,7 @@ namespace FitCore.Application.Services;
 public class ReservationService : IReservationService
 {
     private readonly FitCoreDbContext _context;
+
 
     public ReservationService(FitCoreDbContext context)
     {

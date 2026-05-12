@@ -1,15 +1,13 @@
 ﻿namespace FitCore.Application.DTOs;
 
 /// <summary>
-/// Create workout class DTO.
+/// DTO for creating workout classes.
 /// </summary>
 public class CreateWorkoutClassDto
 {
-    public string Name { get; set; }
+    public string Title { get; set; }
 
     public DateTime StartTime { get; set; }
-
-    public int DurationMinutes { get; set; }
 
     public int Capacity { get; set; }
 
