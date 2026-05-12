@@ -45,6 +45,10 @@ namespace assignment_fitcore_api.md26
 
             builder.Services.AddScoped<IReservationService, ReservationService>();
 
+            builder.Services.AddScoped<IPaymentService, PaymentService>();
+
+            builder.Services.AddScoped<IVisitService, VisitService>();
+
             var app = builder.Build();
 
             // Configure HTTP pipeline
