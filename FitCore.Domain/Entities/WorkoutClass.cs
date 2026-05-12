@@ -3,7 +3,7 @@
 namespace FitCore.Domain.Entities;
 
 /// <summary>
-/// Represents a group workout class.
+/// Represents workout class.
 /// </summary>
 public class WorkoutClass : BaseEntity
 {

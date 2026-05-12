@@ -13,4 +13,12 @@ public class Client : BaseEntity
     public bool IsActive { get; set; } = true;
 
     public ICollection<Membership> Memberships { get; set; } = new List<Membership>();
+    public ICollection<ClassReservation> Reservations { get; set; }
+    = new List<ClassReservation>();
+
+    public ICollection<Visit> Visits { get; set; }
+        = new List<Visit>();
+
+    public ICollection<Payment> Payments { get; set; }
+        = new List<Payment>();
 }

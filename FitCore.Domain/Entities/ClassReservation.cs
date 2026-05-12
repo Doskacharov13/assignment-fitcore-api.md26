@@ -3,7 +3,7 @@
 namespace FitCore.Domain.Entities;
 
 /// <summary>
-/// Represents a reservation for a workout class.
+/// Represents reservation for workout class.
 /// </summary>
 public class ClassReservation : BaseEntity
 {

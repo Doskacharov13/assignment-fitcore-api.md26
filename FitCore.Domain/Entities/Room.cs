@@ -3,7 +3,7 @@
 namespace FitCore.Domain.Entities;
 
 /// <summary>
-/// Represents a workout room.
+/// Represents gym room.
 /// </summary>
 public class Room : BaseEntity
 {

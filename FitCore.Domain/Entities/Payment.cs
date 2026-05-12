@@ -3,7 +3,7 @@
 namespace FitCore.Domain.Entities;
 
 /// <summary>
-/// Represents a payment.
+/// Represents payment.
 /// </summary>
 public class Payment : BaseEntity
 {
@@ -15,5 +15,5 @@ public class Payment : BaseEntity
 
     public DateTime PaymentDate { get; set; }
 
-    public bool IsSuccessful { get; set; }
+    public bool IsConfirmed { get; set; }
 }

@@ -12,4 +12,7 @@ public class Trainer
     public string Specialty { get; set; }
 
     public bool IsActive { get; set; } = true;
+
+    public ICollection<WorkoutClass> WorkoutClasses { get; set; }
+    = new List<WorkoutClass>();
 }
