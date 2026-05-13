@@ -12,10 +12,14 @@ namespace FitCore.Application.Services;
 public class PaymentService : IPaymentService
 {
     private readonly FitCoreDbContext _context;
+    private readonly INotificationService _notificationService;
 
-    public PaymentService(FitCoreDbContext context)
+    public PaymentService(
+        FitCoreDbContext context,
+        INotificationService notificationService)
     {
         _context = context;
+        _notificationService = notificationService;
     }
 
     public async Task<IEnumerable<PaymentDto>> GetAllAsync()
@@ -26,7 +30,6 @@ public class PaymentService : IPaymentService
                 Id = p.Id,
                 ClientId = p.ClientId,
                 Amount = p.Amount,
-                PaymentDate = p.PaymentDate,
                 IsConfirmed = p.IsConfirmed
             })
             .ToListAsync();
@@ -36,7 +39,7 @@ public class PaymentService : IPaymentService
     {
         if (dto.Amount <= 0)
         {
-            throw new Exception("Payment amount must be positive.");
+            throw new Exception("Amount must be greater than zero.");
         }
 
         var client = await _context.Clients.FindAsync(dto.ClientId);
@@ -50,7 +53,6 @@ public class PaymentService : IPaymentService
         {
             ClientId = dto.ClientId,
             Amount = dto.Amount,
-            PaymentDate = DateTime.UtcNow,
             IsConfirmed = true
         };
 
@@ -58,12 +60,18 @@ public class PaymentService : IPaymentService
 
         await _context.SaveChangesAsync();
 
+        await _notificationService.SendPaymentConfirmedAsync(new
+        {
+            payment.Id,
+            payment.ClientId,
+            payment.Amount
+        });
+
         return new PaymentDto
         {
             Id = payment.Id,
             ClientId = payment.ClientId,
             Amount = payment.Amount,
-            PaymentDate = payment.PaymentDate,
             IsConfirmed = payment.IsConfirmed
         };
     }

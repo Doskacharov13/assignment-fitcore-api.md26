@@ -6,6 +6,8 @@ using FitCore.Application.Services;
 using FitCore.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using FitCore.API.Hubs;
+using FitCore.API.Services;
+using FitCore.Application.Interfaces;
 
 namespace assignment_fitcore_api.md26
 {
@@ -54,6 +56,8 @@ namespace assignment_fitcore_api.md26
             builder.Services.AddScoped<IVisitService, VisitService>();
 
             builder.Services.AddSignalR();
+
+            builder.Services.AddScoped<INotificationService, NotificationService>();
 
 
             builder.Services

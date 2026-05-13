@@ -4,7 +4,6 @@ using FitCore.Domain.Entities;
 using FitCore.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace FitCore.Application.Services;
 
 /// <summary>
@@ -13,11 +12,14 @@ namespace FitCore.Application.Services;
 public class ReservationService : IReservationService
 {
     private readonly FitCoreDbContext _context;
+    private readonly INotificationService _notificationService;
 
-
-    public ReservationService(FitCoreDbContext context)
+    public ReservationService(
+        FitCoreDbContext context,
+        INotificationService notificationService)
     {
         _context = context;
+        _notificationService = notificationService;
     }
 
     public async Task<IEnumerable<ReservationDto>> GetAllAsync()
@@ -98,6 +100,13 @@ public class ReservationService : IReservationService
         _context.ClassReservations.Add(reservation);
 
         await _context.SaveChangesAsync();
+
+        await _notificationService.SendReservationCreatedAsync(new
+        {
+            reservation.Id,
+            reservation.ClientId,
+            reservation.WorkoutClassId
+        });
 
         return new ReservationDto
         {

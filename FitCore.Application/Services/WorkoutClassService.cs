@@ -12,15 +12,16 @@ namespace FitCore.Application.Services;
 public class WorkoutClassService : IWorkoutClassService
 {
     private readonly FitCoreDbContext _context;
+    private readonly INotificationService _notificationService;
 
-    public WorkoutClassService(FitCoreDbContext context)
+    public WorkoutClassService(
+        FitCoreDbContext context,
+        INotificationService notificationService)
     {
         _context = context;
+        _notificationService = notificationService;
     }
 
-    /// <summary>
-    /// Gets all workout classes.
-    /// </summary>
     public async Task<IEnumerable<WorkoutClassDto>> GetAllAsync()
     {
         return await _context.WorkoutClasses
@@ -41,9 +42,6 @@ public class WorkoutClassService : IWorkoutClassService
             .ToListAsync();
     }
 
-    /// <summary>
-    /// Gets workout class by id.
-    /// </summary>
     public async Task<WorkoutClassDto?> GetByIdAsync(Guid id)
     {
         return await _context.WorkoutClasses
@@ -65,9 +63,6 @@ public class WorkoutClassService : IWorkoutClassService
             .FirstOrDefaultAsync();
     }
 
-    /// <summary>
-    /// Creates a workout class.
-    /// </summary>
     public async Task<WorkoutClassDto> CreateAsync(CreateWorkoutClassDto dto)
     {
         if (dto.Capacity <= 0)
@@ -92,26 +87,6 @@ public class WorkoutClassService : IWorkoutClassService
         if (room == null)
         {
             throw new Exception("Room not found.");
-        }
-
-        var trainerConflict = await _context.WorkoutClasses.AnyAsync(w =>
-            w.TrainerId == dto.TrainerId &&
-            w.StartTime == dto.StartTime &&
-            !w.IsCancelled);
-
-        if (trainerConflict)
-        {
-            throw new Exception("Trainer already has a class at this time.");
-        }
-
-        var roomConflict = await _context.WorkoutClasses.AnyAsync(w =>
-            w.RoomId == dto.RoomId &&
-            w.StartTime == dto.StartTime &&
-            !w.IsCancelled);
-
-        if (roomConflict)
-        {
-            throw new Exception("Room already has a class at this time.");
         }
 
         var workoutClass = new WorkoutClass
@@ -142,9 +117,6 @@ public class WorkoutClassService : IWorkoutClassService
         };
     }
 
-    /// <summary>
-    /// Cancels workout class.
-    /// </summary>
     public async Task CancelAsync(Guid id)
     {
         var workoutClass = await _context.WorkoutClasses.FindAsync(id);
@@ -157,5 +129,11 @@ public class WorkoutClassService : IWorkoutClassService
         workoutClass.IsCancelled = true;
 
         await _context.SaveChangesAsync();
+
+        await _notificationService.SendWorkoutCancelledAsync(new
+        {
+            workoutClass.Id,
+            workoutClass.Title
+        });
     }
 }
