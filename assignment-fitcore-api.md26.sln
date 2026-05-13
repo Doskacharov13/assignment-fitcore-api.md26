@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitCore.Application", "FitC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitCore.Infrastructure", "FitCore.Infrastructure\FitCore.Infrastructure.csproj", "{5D900D72-6382-5617-4E02-E0995095B3B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitCore.UnitTest", "FitCore.UnitTest\FitCore.UnitTest.csproj", "{8F6FDD9D-3D3B-4DBA-9722-C01C2411BB71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitCore.IntegrationTest", "FitCore.IntegrationTest\FitCore.IntegrationTest.csproj", "{62CA822D-1E43-4634-9A59-6297B29EC6DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{5D900D72-6382-5617-4E02-E0995095B3B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D900D72-6382-5617-4E02-E0995095B3B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D900D72-6382-5617-4E02-E0995095B3B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F6FDD9D-3D3B-4DBA-9722-C01C2411BB71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F6FDD9D-3D3B-4DBA-9722-C01C2411BB71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F6FDD9D-3D3B-4DBA-9722-C01C2411BB71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F6FDD9D-3D3B-4DBA-9722-C01C2411BB71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62CA822D-1E43-4634-9A59-6297B29EC6DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62CA822D-1E43-4634-9A59-6297B29EC6DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62CA822D-1E43-4634-9A59-6297B29EC6DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62CA822D-1E43-4634-9A59-6297B29EC6DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
