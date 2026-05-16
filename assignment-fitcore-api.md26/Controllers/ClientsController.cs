@@ -42,4 +42,28 @@ public class ClientsController : ControllerBase
 
         return Ok(client);
     }
+
+    /// <summary>
+    /// Update client.
+    /// </summary>
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(
+        Guid id,
+        UpdateClientDto dto)
+    {
+        var client = await _clientService.UpdateAsync(id, dto);
+
+        return Ok(client);
+    }
+
+    /// <summary>
+    /// Delete client.
+    /// </summary>
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        await _clientService.DeleteAsync(id);
+
+        return NoContent();
+    }
 }

@@ -18,6 +18,9 @@ public class ClientService : IClientService
         _context = context;
     }
 
+    /// <summary>
+    /// Get all clients.
+    /// </summary>
     public async Task<IEnumerable<ClientDto>> GetAllAsync()
     {
         return await _context.Clients
@@ -32,6 +35,9 @@ public class ClientService : IClientService
             .ToListAsync();
     }
 
+    /// <summary>
+    /// Create client.
+    /// </summary>
     public async Task<ClientDto> CreateAsync(CreateClientDto dto)
     {
         var client = new Client
@@ -54,5 +60,55 @@ public class ClientService : IClientService
             Phone = client.Phone,
             IsActive = client.IsActive
         };
+    }
+
+    /// <summary>
+    /// Update client.
+    /// </summary>
+    public async Task<ClientDto> UpdateAsync(
+        Guid id,
+        UpdateClientDto dto)
+    {
+        var client = await _context.Clients
+            .FirstOrDefaultAsync(c => c.Id == id);
+
+        if (client == null)
+        {
+            throw new Exception("Client not found.");
+        }
+
+        client.FullName = dto.FullName;
+        client.Email = dto.Email;
+        client.Phone = dto.Phone;
+        client.IsActive = dto.IsActive;
+
+        await _context.SaveChangesAsync();
+
+        return new ClientDto
+        {
+            Id = client.Id,
+            FullName = client.FullName,
+            Email = client.Email,
+            Phone = client.Phone,
+            IsActive = client.IsActive
+        };
+    }
+
+    /// <summary>
+    /// Delete client.
+    /// </summary>
+    public async Task DeleteAsync(Guid id)
+    {
+        var client = await _context.Clients
+            .FirstOrDefaultAsync(c => c.Id == id);
+
+        if (client == null)
+        {
+            throw new Exception("Client not found.");
+        }
+
+        _context.Clients.Remove(client);
+
+        await _context.SaveChangesAsync();
     }
 }
