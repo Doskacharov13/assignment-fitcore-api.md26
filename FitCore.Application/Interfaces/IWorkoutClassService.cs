@@ -3,27 +3,21 @@
 namespace FitCore.Application.Interfaces;
 
 /// <summary>
-/// Service for workout classes.
+/// Interface for workout class service.
 /// </summary>
 public interface IWorkoutClassService
 {
-    /// <summary>
-    /// Gets all workout classes.
-    /// </summary>
     Task<IEnumerable<WorkoutClassDto>> GetAllAsync();
 
-    /// <summary>
-    /// Gets workout class by id.
-    /// </summary>
     Task<WorkoutClassDto?> GetByIdAsync(Guid id);
 
-    /// <summary>
-    /// Creates a workout class.
-    /// </summary>
     Task<WorkoutClassDto> CreateAsync(CreateWorkoutClassDto dto);
 
-    /// <summary>
-    /// Cancels a workout class.
-    /// </summary>
+    Task<WorkoutClassDto> UpdateAsync(
+        Guid id,
+        CreateWorkoutClassDto dto);
+
+    Task DeleteAsync(Guid id);
+
     Task CancelAsync(Guid id);
 }

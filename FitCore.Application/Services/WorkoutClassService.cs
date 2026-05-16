@@ -14,6 +14,7 @@ public class WorkoutClassService : IWorkoutClassService
     private readonly FitCoreDbContext _context;
     private readonly INotificationService _notificationService;
 
+
     public WorkoutClassService(
         FitCoreDbContext context,
         INotificationService notificationService)
@@ -135,5 +136,55 @@ public class WorkoutClassService : IWorkoutClassService
             workoutClass.Id,
             workoutClass.Title
         });
+    }
+    public async Task<WorkoutClassDto> UpdateAsync(
+    Guid id,
+    CreateWorkoutClassDto dto)
+    {
+        var workoutClass = await _context.WorkoutClasses
+            .Include(w => w.Trainer)
+            .Include(w => w.Room)
+            .FirstOrDefaultAsync(w => w.Id == id);
+
+        if (workoutClass == null)
+        {
+            throw new Exception("Workout class not found.");
+        }
+
+        workoutClass.Title = dto.Title;
+        workoutClass.StartTime = dto.StartTime;
+        workoutClass.Capacity = dto.Capacity;
+        workoutClass.TrainerId = dto.TrainerId;
+        workoutClass.RoomId = dto.RoomId;
+
+        await _context.SaveChangesAsync();
+
+        return new WorkoutClassDto
+        {
+            Id = workoutClass.Id,
+            Title = workoutClass.Title,
+            StartTime = workoutClass.StartTime,
+            Capacity = workoutClass.Capacity,
+            IsCancelled = workoutClass.IsCancelled,
+            TrainerId = workoutClass.TrainerId,
+            TrainerName = workoutClass.Trainer.FullName,
+            RoomId = workoutClass.RoomId,
+            RoomName = workoutClass.Room.Name
+        };
+    }
+
+    public async Task DeleteAsync(Guid id)
+    {
+        var workoutClass = await _context.WorkoutClasses
+            .FirstOrDefaultAsync(w => w.Id == id);
+
+        if (workoutClass == null)
+        {
+            throw new Exception("Workout class not found.");
+        }
+
+        _context.WorkoutClasses.Remove(workoutClass);
+
+        await _context.SaveChangesAsync();
     }
 }

@@ -35,4 +35,27 @@ public class WorkoutClassesController : ControllerBase
     {
         return Ok(await _service.CreateAsync(dto));
     }
+    /// <summary>
+    /// Update workout class.
+    /// </summary>
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(
+        Guid id,
+        CreateWorkoutClassDto dto)
+    {
+        var workoutClass = await _service.UpdateAsync(id, dto);
+
+        return Ok(workoutClass);
+    }
+
+    /// <summary>
+    /// Delete workout class.
+    /// </summary>
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        await _service.DeleteAsync(id);
+
+        return NoContent();
+    }
 }
