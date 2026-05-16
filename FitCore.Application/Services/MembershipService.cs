@@ -11,6 +11,49 @@ namespace FitCore.Application.Services;
 /// </summary>
 public class MembershipService : IMembershipService
 {
+    public async Task<MembershipDto> UpdateAsync(
+    Guid id,
+    UpdateMembershipDto dto)
+    {
+        var membership = await _context.Memberships
+            .FirstOrDefaultAsync(m => m.Id == id);
+
+        if (membership == null)
+        {
+            throw new Exception("Membership not found.");
+        }
+
+        membership.StartDate = dto.StartDate;
+        membership.EndDate = dto.EndDate;
+        membership.IsActive = dto.IsActive;
+
+        await _context.SaveChangesAsync();
+
+        return new MembershipDto
+        {
+            Id = membership.Id,
+            ClientId = membership.ClientId,
+            PlanId = membership.PlanId,
+            StartDate = membership.StartDate,
+            EndDate = membership.EndDate,
+            IsActive = membership.IsActive
+        };
+    }
+
+    public async Task DeleteAsync(Guid id)
+    {
+        var membership = await _context.Memberships
+            .FirstOrDefaultAsync(m => m.Id == id);
+
+        if (membership == null)
+        {
+            throw new Exception("Membership not found.");
+        }
+
+        _context.Memberships.Remove(membership);
+
+        await _context.SaveChangesAsync();
+    }
     private readonly FitCoreDbContext _context;
 
     public MembershipService(FitCoreDbContext context)
@@ -91,5 +134,6 @@ public class MembershipService : IMembershipService
             StartDate = membership.StartDate,
             EndDate = membership.EndDate
         };
+
     }
 }

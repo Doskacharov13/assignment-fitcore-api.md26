@@ -12,4 +12,8 @@ public interface IMembershipService
     Task<IEnumerable<MembershipDto>> GetActiveAsync();
 
     Task<MembershipDto> CreateAsync(CreateMembershipDto dto);
+
+    Task<MembershipDto> UpdateAsync(Guid id, UpdateMembershipDto dto);
+
+    Task DeleteAsync(Guid id);
 }

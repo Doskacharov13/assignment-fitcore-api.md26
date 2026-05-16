@@ -50,4 +50,27 @@ public class MembershipsController : ControllerBase
 
         return Ok(membership);
     }
+    /// <summary>
+    /// Update membership.
+    /// </summary>
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(
+        Guid id,
+        UpdateMembershipDto dto)
+    {
+        var membership = await _service.UpdateAsync(id, dto);
+
+        return Ok(membership);
+    }
+
+    /// <summary>
+    /// Delete membership.
+    /// </summary>
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        await _service.DeleteAsync(id);
+
+        return NoContent();
+    }
 }
